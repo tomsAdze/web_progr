@@ -52,8 +52,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 12px;
   cursor: pointer;
+}
+
+.top_menu .btn {
+  margin-left: 12px;
 }
 
 .btn_call_to_action {
@@ -104,4 +107,25 @@ h1 {
 .btn_accent {
   background: #18a0fb;
   color: #fff;
+}
+
+section {
+  padding: 30px;
+  background: #fff;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+h2 {
+  padding: 10px;
+}
+
+.card {
+  width: 45%;
+  min-width: 300px;
+  padding: 10px;
+  box-sizing: border-box;
 }
