@@ -1,5 +1,22 @@
 /** @format */
 
+$color_accent: #1c79b8;
+$max_size: 1680px;
+
+@mixin btn($size: 15) {
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: $size + 0px;
+  line-height: 18/15 * $size + 0px; // 18px (ja $size:15px;)
+  letter-spacing: -0.015em;
+  color: $color_accent;
+  text-decoration: none;
+}
+
+@function pxToEm($px_size, $defaul_size: 16) {
+  @return $px_size / $defaul_size + 0em;
+}
+
 body {
   margin: 0;
   background: #f2f2f2;
@@ -9,6 +26,23 @@ body {
   background: #fff;
 }
 
+h2 {
+  padding: 10px;
+}
+
+.btn {
+  @include btn(15);
+  border: pxToEm(1, 15) solid $color_accent;
+  box-sizing: border-box;
+  border-radius: pxToEm(6, 15);
+  width: pxToEm(130, 15);
+  height: pxToEm(40, 15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .top_menu {
   margin: auto;
   display: flex;
@@ -16,67 +50,52 @@ body {
   max-width: 1520px;
   padding: 0 30px;
   height: 60px;
-}
 
-.top_menu > div {
-  display: flex;
-  align-items: center;
-}
+  > div {
+    display: flex;
+    align-items: center;
+  }
 
-.top_menu nav {
-  display: flex;
-  margin-left: 31px;
-}
+  nav {
+    display: flex;
+    margin-left: 31px;
 
-.top_menu nav a,
-.btn {
-  font-family: Montserrat;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 18px;
-  letter-spacing: -0.015em;
-  color: #18a0fb;
-  text-decoration: none;
-}
-
-.top_menu nav a {
-  margin-left: 40px;
+    a {
+      @include btn(20);
+      margin-left: 40px;
+    }
+  }
+  .btn {
+    margin-left: 12px;
+  }
 }
 
 .btn {
-  border: 1px solid #18a0fb;
-  box-sizing: border-box;
-  border-radius: 6px;
-  width: 130px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
+  &_call_to_action {
+    width: 192px;
+    height: 52px;
+  }
 
-.top_menu .btn {
-  margin-left: 12px;
-}
+  &_light {
+    background: #ffffff;
+  }
 
-.btn_call_to_action {
-  width: 192px;
-  height: 52px;
-}
+  &_accent {
+    font-size: 20px;
+    background: $color_accent;
+    color: #fff;
 
-.btn_light {
-  background: #ffffff;
-}
-
-.btn_accent {
-  background: #18a0fb;
-  color: #fff;
+    &:hover {
+      background: #fff;
+      color: $color_accent;
+    }
+  }
 }
 
 header {
-  max-width: 1680px;
+  max-width: $max_size;
   height: 100vh;
-  max-height: 960px;
+  max-height: pxToEm(960);
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -89,27 +108,26 @@ header {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+
+  &__title {
+    font-family: Montserrat;
+    font-size: pxToEm(56);
+    line-height: pxToEm(80, 56);
+    text-align: center;
+    letter-spacing: -0.015em;
+    color: #000000;
+    margin-top: pxToEm(390, 56);
+  }
 }
 
-h1 {
-  font-family: Montserrat;
-  font-size: 56px;
-  line-height: 80px;
-  text-align: center;
-  letter-spacing: -0.015em;
-  color: #000000;
-}
-
-.bg_header__title {
-  margin-top: 390px;
-}
-
-.btn_accent {
-  background: #18a0fb;
-  color: #fff;
+@media screen and (max-width: 600px) {
+  .bg_header {
+    font-size: 10px;
+  }
 }
 
 section {
+  max-width: $max_size;
   padding: 30px;
   background: #fff;
 }
@@ -117,10 +135,6 @@ section {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-}
-
-h2 {
-  padding: 10px;
 }
 
 .card {
